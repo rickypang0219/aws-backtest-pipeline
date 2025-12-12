@@ -1,0 +1,91 @@
+[project]
+name = "data_processing"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aws-lambda-powertools>=3.17.0",
+    "boto3>=1.39.11",
+    "cachetools>=6.1.0",
+    "duckdb>=1.4.1",
+    "fsspec>=2025.7.0",
+    "matplotlib>=3.10.7",
+    "mypy>=1.18.2",
+    "mypy-boto3-sqs>=1.39.0",
+    "pandas>=2.3.3",
+    "polars>=1.31.0",
+    "pyarrow>=21.0.0",
+    "pydantic>=2.11.7",
+    "requests>=2.32.4",
+    "s3fs>=0.4.2",
+    "simplejson>=3.20.1",
+]
+
+
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.400",
+    "ruff>=0.11.4",
+  "boto3-stubs[apigatewaymanagementapi,ec2,ecs,essential,logs,ses,ssm,stepfunctions,translate]>=1.18,<2.0"
+]
+
+
+[tool.ruff]
+target-version = "py312"
+
+
+[tool.pyright]
+include = ["data_processing"]
+pythonVersion = "3.12"
+pythonPlatform = "Linux"
+
+
+[tool.ruff.lint]
+select = [
+    "A", # flake8-builtins
+    "ANN", # flake8-annotations
+    "ARG", # flake8-unused-arguments
+    "B", # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "E",  # pycodestyle
+    "ERA", # eradicate
+    "F",  # Pyflakes
+    "FBT", # flake8-boolean-trap
+    "FURB", # refurb
+    "G", # flake8-logging-format
+    "I", # isort
+    "ICN", # flake8-import-conventions
+    "PERF",
+    "PIE", # flake8-pie
+    "PL", # pylint
+    "PTH", # flake8-use-pathlib
+    "Q", # flake8-quotes
+    "RET", # flake8-return
+    "RUF", # Ruff-specific rules
+    "S", # flake8-bandit
+    "SIM", # flake8-simplify
+    "TCH", # flake8-type-checking
+    "TID", # flake8-tidy-imports
+    "UP", # pyupgrade
+    "W",  # pycodestyle
+    "YTT", # flake8-2020
+]
+
+ignore = [
+    "A003", # builtin-attribute-shadowing
+    "PLR2004", # magic-value-comparison
+    "RUF001", # this could make chinese , into english ,
+    "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+    "UP037", # Remove quotes from type annotation
+    "PLR0917", # Too many positional arguments
+    "PLR6104", # Use `+=` to perform an augmented assignment directly
+    "I001",
+    "E501",
+    "S608" # hardcode SQL (appeared inside base prompt)
+]
+
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 100

@@ -1,0 +1,16 @@
+FROM public.ecr.aws/docker/library/python:3.12
+
+WORKDIR /app
+
+COPY requirements.txt ./
+
+RUN python3.12 -m pip install -r requirements.txt -t .
+
+COPY data_processing/ ./data_processing/
+
+ENV POLARS_TEMP_DIR=/tmp
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+
+
+ENTRYPOINT ["python", "-m"]
